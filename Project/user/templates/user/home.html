@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+	<title>Login</title>
+{% endblock %}
+
+{% block content %}
+<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+				{% if user.is_authenticated %}
+					<form method="POST" action="">
+						{% csrf_token %}
+						{{form.text}} <br>
+						
+						<button class='btn btn-outline-primary btn-md' type="submit">Post</button>
+						
+					</form>
+					{% endif %}
+					{% for post in posts%}
+						<h1>{{ post.text }}</h1>
+						<p> Posted by <span class="text-muted">{{ post.user}}</span> {{post.date|naturaltime}} ago</p>
+
+					{% endfor %}
+			
+			
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+					<h1>Other people</h1>
+					{% for user in users%}
+						<h3><a href="{% url 'user:profile_with_pk' user.pk%}">{{ user.username }}</a></h3>
+					
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+	
+{% endblock %}
+	<!-- {% if not user in friends%}
+						<a href="{% url 'user:change_friend' operation='add' pk=user.pk %}"><button class="btn btn-outline-success btn-md">Add friend</button></a><br>	
+						{% endif%} -->
+						
+
+						
+					<!-- 
+						<h1>Friends</h1>
+						{% for friend in friends %}
+								<h3><a href="{% url 'user:profile_with_pk' friend.pk%}">{{ friend.username}}</a></h3>
+									<a href="{% url 'user:change_friend' operation='remove' pk=friend.pk %}"><button class="btn btn-outline-danger btn-md">Remove friend</button></a><br>	
+						{% endfor %}
+					 -->
+
+
+
+	

@@ -1,0 +1,27 @@
+  <nav>
+    <div class="nav-wrapper blue lighten-3">
+      
+      
+      
+        {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">RoomRent</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About us </a></li>
+            <li><a href="{% url 'profile' %}">{{ user }}</a></li>
+            <a href="{% url 'logout' %}" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+        {% else %}
+            <a href="{% url 'home_before_login' %}">RoomRent</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'home_before_login' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About us </a></li>
+            <li><a href="{% url 'login' %}">Login </a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        
+       {% endif %}
+
+      </ul>
+    </div>
+  </nav>

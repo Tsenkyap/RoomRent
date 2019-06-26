@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+	<title>Login</title>
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+			
+			<h1>Login page</h1>
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{form.as_p}}
+				
+				<button type="submit">Login</button>
+				<p class="text-muted">Forgot your password? <a href="{% url 'user:password_reset'%}">Reset</a> here</p>
+
+			</form>
+			</div>
+			</div>
+		</div>
+	
+{% endblock %}
+
+
+	

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+		<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	
+<h1 class="display-4" style="text-align: center;">User Info</h1>
+		<div class="album py-5 bg-light">
+		        <div class="container">
+	
+		          <div class="row">
+		          	<!-- first column -->
+		            <div class="col-md-5">
+		              <div class="card mb-4 shadow-sm">
+
+		              	<!-- this gets triggered if the pk is None-->
+		              	{% if current_user.profile.image %}
+							<img class="card-img-top" src="{{current_user.profile.image.url}}" alt="{{current_user.username}}">
+		                	<!-- this gets triggered if the link of other user is clicked and pk is passed -->
+		                {% else %}
+
+		                	<img class="card-img-top" src="{{other_user.profile.image.url}}" alt="{{other_user.username}}">
+		                	
+		                {% endif %}
+		                
+		                </div>
+		              </div>
+
+		              <!-- another column starts from here-->
+		              
+		              <div class="col-md-6">
+		              
+		                <div class="card-body">
+		                  <div class="row">
+
+	              	<!-- this form is for the bio change -->
+	              	{% if current_user %}
+
+		                  	<form method="POST" action="" enctype="multipart/form-data">
+								{% csrf_token %}
+								{{p_form.as_p}}
+								{{user_form.as_p}}
+								<button type="submit" class="btn btn-info btn-md">Update</button>
+							</form>
+					{% else %}
+						<label for="bio-data">Bio-Data:</label><br>
+						<input type="text" value="{{other_user.profile.bio_data}}" class="form-control" id="bio_data"><br><br>
+						<label for="city">City:</label><br>
+						<input type="text" value="{{other_user.profile.city}}" class="form-control"><br><br>
+						<label for="website">Website:</label><br>
+						<input type="text" value="{{other_user.profile.website}}" class="form-control">
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+							
+
+					{% endif %}
+		                  </div>
+		                 </div> 
+		                </div>		                 
+		               </div>
+		              </div>
+		            </div>
+		           </div>
+		      <!-- <div class="container-fluid">
+		      	<div class="row">
+		      		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+		      			{% if current_user.profile.username == posts.user  %}
+
+			      			{% for post in posts %}
+			      				<h1>{{ post.text}}</h1>
+			      			{% endfor %}
+		      			{% endif%}
+		      		</div>
+		      	</div>
+		      </div> -->
+
+{% endblock %}
